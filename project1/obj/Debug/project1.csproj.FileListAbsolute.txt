@@ -1,0 +1,9 @@
+C:\Users\Fox\Desktop\석토마타\project1\project1\bin\Debug\project1.exe.config
+C:\Users\Fox\Desktop\석토마타\project1\project1\obj\Debug\project1.csprojResolveAssemblyReference.cache
+C:\Users\Fox\Desktop\석토마타\project1\project1\bin\Debug\project1.exe
+C:\Users\Fox\Desktop\석토마타\project1\project1\bin\Debug\project1.pdb
+C:\Users\Fox\Desktop\석토마타\project1\project1\obj\Debug\project1.exe
+C:\Users\Fox\Desktop\석토마타\project1\project1\obj\Debug\project1.pdb
+C:\Users\Fox\Documents\MinilanParser\project1\bin\Debug\project1.exe.config
+C:\Users\Fox\Documents\MinilanParser\project1\obj\Debug\project1.exe
+C:\Users\Fox\Documents\MinilanParser\project1\obj\Debug\project1.pdb
