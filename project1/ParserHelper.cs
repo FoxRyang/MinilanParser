@@ -57,11 +57,19 @@ namespace RealTree
             FileStream fsa = new FileStream(Directory.GetCurrentDirectory() + "/test.txt", FileMode.Open);
             reader = new StreamReader(fsa);
 
+            StreamWriter output = new StreamWriter(Directory.GetCurrentDirectory() + "/output.txt");
+            
+
+
             Parser parser = new Parser(new Lexer(reader));
             Console.WriteLine("RealCalc expression evaluator, type ^C to exit, help for help");
             parser.Parse();
 
             System.Console.Write(parser.ValueStack[1].Unparse());
+            String str = parser.ValueStack[1].Unparse();
+            output.WriteLine(str);
+
+            output.Close();
         }
 
         // ==================================================================================

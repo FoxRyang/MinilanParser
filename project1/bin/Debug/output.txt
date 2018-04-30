@@ -1,0 +1,1 @@
+[ Root [AssignCtn x, [AssignCtn y, [Assign z 1], 2 ], 3 ], [ Root [ If [ SL [ SL [ GUARD x == x ] -> 1 ] | [ SL [ GUARD y == y ] -> 2 ] ] ], [ Do [ SL [ SL [ GUARD x == x ] -> 1 ] | [ SL [ GUARD y == y ] -> 2 ] ] ] ] ]
