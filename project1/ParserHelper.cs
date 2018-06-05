@@ -416,7 +416,16 @@ namespace RealTree
 
             var sls = remain as SLNode;
 
-            bool flag = sls.DoSL(p);
+            bool flag = false;
+
+            if (sls != null)
+            {
+                flag = sls.DoSL(p);
+            }
+            else
+            {
+                flag = (remain as Cond).DoSL(p);
+            }
 
             if (!flag)
             {
@@ -447,10 +456,21 @@ namespace RealTree
 
             var sls = remain as SLNode;
 
-            bool flag = true;
-            while (flag)
+            if (sls != null)
             {
-                flag = sls.DoSL(p);
+                bool flag = true;
+                while (flag)
+                {
+                    flag = sls.DoSL(p);
+                }
+            }
+            else
+            {
+                bool flag = true;
+                while (flag)
+                {
+                    flag = (remain as Cond).DoSL(p);
+                }
             }
 
             return this;
@@ -583,11 +603,25 @@ namespace RealTree
             return (guard as Guard).GetBool(p);
         }
 
+        public bool DoSL(Parser p)
+        {
+            bool flag = false;
+
+            var g = guard as Guard;
+            g.Eval(p);
+            if (g.GetBool(p))
+            {
+                expr.Eval(p);
+                flag = true;
+            }
+
+            return flag;
+        }
+
         public override double GetValue(Parser p)
         {
             expr.Eval(p);
-
-            return expr.GetValue(p);
+            return 0;
         }
 
         public override string Unparse()

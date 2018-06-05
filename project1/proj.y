@@ -8,7 +8,7 @@
 
 %start PROGRAM
 
-%token _SKIP ABORT GT NE EQ LT LTE GTE PLUS MINUS MULTIPLY DIVIDE ID NUMBER IF END_IF DO END_DO ERROR EOL
+%token _SKIP ABORT GT NE EQ LT LTE GTE PLUS MINUS MULTIPLY DIVIDE ID PRINT NUMBER IF END_IF DO END_DO ERROR EOL
 
 %left '+' '-'
 %left '*' '/' '%'
@@ -29,7 +29,9 @@ SENTENCE:	_SKIP { $$ = MakeSkipNode();}
 SEQUENCE:	ASSIGNSEQUENCE { $$ = $1; }
 			|IFSEQUENCE { $$ = $1; }
 			|DOSEQUENCE { $$ = $1; }
+			|PRINT Term { $$ = MakePrintNode($2); }
 ;
+
 ASSIGNSEQUENCE: Term ',' ASSIGNSEQUENCE ',' EXPR { $$ = MakeAssignDeep($1, $3, $5); }
 				|Term ':''=' EXPR { $$ = MakeAssign($1, $4); }
 ;

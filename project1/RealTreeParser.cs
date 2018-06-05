@@ -292,7 +292,7 @@ internal partial class Parser: ShiftReduceParser<RealTree.Node, LexLocation>
         break;
       case 30: // SLSQ -> GUARD, ':', '>', SENTENCES
 #line 62 "proj.y"
-                               { CurrentSemanticValue = MakeCondition(ValueStack[ValueStack.Depth-4], ValueStack[ValueStack.Depth-3]); }
+                               { CurrentSemanticValue = MakeCondition(ValueStack[ValueStack.Depth-4], ValueStack[ValueStack.Depth-1]); }
 #line default
         break;
       case 31: // GUARD -> EXPR, '>', EXPR
@@ -302,7 +302,7 @@ internal partial class Parser: ShiftReduceParser<RealTree.Node, LexLocation>
         break;
       case 32: // GUARD -> EXPR, '>', '=', EXPR
 #line 66 "proj.y"
-                      { CurrentSemanticValue = MakeGaurd(NodeTag.gte ,ValueStack[ValueStack.Depth-4], ValueStack[ValueStack.Depth-2]); }
+                      { CurrentSemanticValue = MakeGaurd(NodeTag.gte ,ValueStack[ValueStack.Depth-4], ValueStack[ValueStack.Depth-1]); }
 #line default
         break;
       case 33: // GUARD -> EXPR, '<', EXPR
@@ -312,17 +312,17 @@ internal partial class Parser: ShiftReduceParser<RealTree.Node, LexLocation>
         break;
       case 34: // GUARD -> EXPR, '<', '=', EXPR
 #line 68 "proj.y"
-                      { CurrentSemanticValue = MakeGaurd(NodeTag.lte ,ValueStack[ValueStack.Depth-4], ValueStack[ValueStack.Depth-2]); }
+                      { CurrentSemanticValue = MakeGaurd(NodeTag.lte ,ValueStack[ValueStack.Depth-4], ValueStack[ValueStack.Depth-1]); }
 #line default
         break;
       case 35: // GUARD -> EXPR, '=', '=', EXPR
 #line 69 "proj.y"
-                      { CurrentSemanticValue = MakeGaurd(NodeTag.eq ,ValueStack[ValueStack.Depth-4], ValueStack[ValueStack.Depth-2]); }
+                      { CurrentSemanticValue = MakeGaurd(NodeTag.eq ,ValueStack[ValueStack.Depth-4], ValueStack[ValueStack.Depth-1]); }
 #line default
         break;
       case 36: // GUARD -> EXPR, '!', '=', EXPR
 #line 70 "proj.y"
-                      { CurrentSemanticValue = MakeGaurd(NodeTag.neq ,ValueStack[ValueStack.Depth-4], ValueStack[ValueStack.Depth-2]); }
+                      { CurrentSemanticValue = MakeGaurd(NodeTag.neq ,ValueStack[ValueStack.Depth-4], ValueStack[ValueStack.Depth-1]); }
 #line default
         break;
     }
