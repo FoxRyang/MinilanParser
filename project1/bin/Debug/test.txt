@@ -1,1 +1,15 @@
-﻿x,y := 1,2; do x < 2 :> z:=33; if z <= 33 :> z:=1 fi; x:=3 | y <3 :> y := 65 od
+﻿a,b,c,d,e := 741, 273, 642, 50, 1242;
+
+do
+a > b :> a,b:=b,a|
+b>c :> b,c:=c,b|
+c>d :> c,d:=d,c|
+d>e :> d,e:=e,d
+
+od
+;
+print a;
+print b;
+print c;
+print d;
+print e

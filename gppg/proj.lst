@@ -1,0 +1,173 @@
+
+// ==========================================================================
+//  GPLEX error listing for lex source file <proj.y>
+// ==========================================================================
+//  Version:  1.2.2
+//  Machine:  FAIRY
+//  DateTime: 2018-06-06 오전 2:21:29
+//  UserName: fairy
+// ==========================================================================
+
+
+%namespace RealTree
+// Error: Too many errors
+// Error: Too many errors, abandoning
+// ----------------------------------
+%output=RealTreeParser.cs
+//^^^^^^^^
+// Error: Unknown LEX tag name
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+%partial
+//^^^^^^
+// Error: Unknown LEX tag name
+// ---------------------------
+%sharetokens
+//^^^^^^^^^^
+// Error: Unknown LEX tag name
+// ---------------------------
+%visibility internal
+
+%YYSTYPE RealTree.Node
+//^^^^^^-^^^
+// Error: Unknown LEX tag name
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+
+%start PROGRAM
+//^^^^-^^^
+// Error: Unknown LEX tag name
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+
+%token _SKIP ABORT GT NE EQ LT LTE GTE PLUS MINUS MULTIPLY DIVIDE ID NUMBER IF END_IF DO END_DO ERROR EOL
+//^^^^-^^^
+// Error: Unknown LEX tag name
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+
+%left '+' '-'
+//^^^-^^^
+// Error: Unknown LEX tag name
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+%left '*' '/' '%'
+//^^^-^^^
+// Error: Unknown LEX tag name
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+%left UMINUS
+//^^^-^^^
+// Error: Unknown LEX tag name
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+
+%%			/*	rules	*/
+//---^^^^^^^^^^^
+// Error: Expected end-of-line here
+// --------------------------------
+PROGRAM : SENTENCES	{ $$ = $1; }
+//--------------------^^---^
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+		| ERROR	{ }
+// Error: Parser error <Syntax error, unexpected lxIndent> 
+// Error: Missing matching construct <'}'> 
+// --------------------------------------------------------
+;
+// Error: Expected space here
+// --------------------------
+
+// Error: Empty semantic action, must be at least a comment
+// --------------------------------------------------------
+SENTENCES:	SENTENCE ';' SENTENCES { $$ = MakeRootNode($1, $3);}
+//----------------------------------^^----------------^
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+			|SENTENCE { $$ = $1; }
+//-------------^^---^
+// Error: Parser error <Syntax error, unexpected lxIndent> 
+// Error: Missing matching construct <'}'> 
+// Error: Missing matching construct <')'> 
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// --------------------------------------------------------
+;
+// Error: Invalid production rule
+// Error: Missing matching construct <'}'> 
+// Error: Expected space here
+// ----------------------------------------
+SENTENCE:	_SKIP { $$ = MakeSkipNode();}
+//----------------^
+// Error: Illegal character in this context
+// Error: Too many errors, abandoning
+// ----------------------------------------
+			|ABORT { $$ = MakeAbort(); }
+			|SEQUENCE { $$ = $1; }
+;
+SEQUENCE:	ASSIGNSEQUENCE { $$ = $1; }
+			|IFSEQUENCE { $$ = $1; }
+			|DOSEQUENCE { $$ = $1; }
+;
+ASSIGNSEQUENCE: Term ',' ASSIGNSEQUENCE ',' EXPR { $$ = MakeAssignDeep($1, $3, $5); }
+				|Term ':''=' EXPR { $$ = MakeAssign($1, $4); }
+;
+Term: 		IDT { $$ = $1; }
+			| NUMBER
+;
+
+IDT:		'-' ID %prec UMINUS{ $$ = MakeUnIdLeaf($2);} // this maybe auto
+			|ID
+			;
+
+EXPR:		Term '+' EXPR { $$ = MakeBinary(NodeTag.plus , $1, $3);}
+			| Term '-' EXPR { $$ = MakeBinary(NodeTag.minus , $1, $3);}
+			| Term '*' EXPR { $$ = MakeBinary(NodeTag.mul , $1, $3);}
+			| Term '/' EXPR { $$ = MakeBinary(NodeTag.div , $1, $3);}
+			| Term '%' EXPR { $$ = MakeBinary(NodeTag.rem , $1, $3);}
+			| Term { $$ = $1; }
+;
+
+IFSEQUENCE: IF END_IF	{ $$ = MakeAbort(); }
+			| IF SLSQs END_IF { $$ = MakeIfSequence($2);}
+;
+
+DOSEQUENCE: DO END_DO	{ $$ = MakeAbort(); }
+			| DO SLSQs END_DO	{ $$ = MakeDoSequence($2);}
+;
+SLSQs: 		SLSQ { $$ = $1; }
+			|SLSQ '|' SLSQs { $$ = MakeSLNode($1, $3);}
+;
+SLSQ: 		GUARD ':''>' SENTENCES { $$ = MakeCondition($1, $4); }
+;
+
+GUARD:		EXPR '>' EXPR { $$ = MakeGaurd(NodeTag.gt ,$1, $3); }
+			| EXPR '>''=' EXPR { $$ = MakeGaurd(NodeTag.gte ,$1, $4); }
+			| EXPR '<' EXPR { $$ = MakeGaurd(NodeTag.lt ,$1, $3); }
+			| EXPR '<''=' EXPR { $$ = MakeGaurd(NodeTag.lte ,$1, $4); }
+			| EXPR '=''=' EXPR { $$ = MakeGaurd(NodeTag.eq ,$1, $4); }
+			| EXPR '!''=' EXPR { $$ = MakeGaurd(NodeTag.neq ,$1, $4); }
+;
+
+%%
+// ==========================================================================
+

@@ -42,9 +42,14 @@ namespace RealTree
 
             System.Console.Write(parser.ValueStack[1].Unparse());
             String str = parser.ValueStack[1].Unparse();
-            output.WriteLine(str);
+            //output.WriteLine(str);
 
             parser.ValueStack[1].Eval(parser);
+
+            for(int i = 0; i < parser.printArgs.Count; i++)
+            {
+                output.WriteLine(parser.printArgs[i]);
+            }
 
             output.Close();
         }

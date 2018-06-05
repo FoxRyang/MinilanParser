@@ -1,1 +1,5 @@
-[ Root [AssignCtn x, [Assign y 1], 2 ], [ Do [ SL [ Cond [ GUARD x < 2 ] -> [ Root [Assign z 33], [ Root [ If [ Cond [ GUARD z <= 33 ] -> [Assign z 1] ] ], [Assign x 3] ] ] ] | [ Cond [ GUARD y < 3 ] -> [Assign y 65] ] ] ] ]
+50
+273
+642
+741
+1242

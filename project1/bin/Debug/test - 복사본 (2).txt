@@ -1,0 +1,1 @@
+﻿x,y := 1,2; do x < 2 :> z:=33; if z <= 33 :> z:=1 fi; x:=3 | y <3 :> y := 65 od; print x; print y; print z; print a
