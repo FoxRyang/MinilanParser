@@ -14,6 +14,8 @@ namespace RealTree
 
         internal Node[] regs = new Node[26];
 
+        internal List<string> printArgs = new List<string>();
+
         internal Dictionary<string, double> idDic = new Dictionary<string, double>();
         internal Dictionary<string, bool> idInitDic = new Dictionary<string, bool>();
 
@@ -137,6 +139,8 @@ namespace RealTree
                             return (int)Tokens.DO;
                         case "od":
                             return (int)Tokens.END_DO;
+                        case "print":
+                            return (int)Tokens.PRINT;
                         default:
                             if (text.Length >= 1)
                             {
@@ -240,6 +244,12 @@ namespace RealTree
         {
             return new AssignNode(lhs, mid, rhs);
         }
+
+        public static Node MakePrintNode(Node term)
+        {
+            return new PrintNode(term);
+        }
+
         //d
         public static Node MakeAssign(Node lhs, Node rhs)
         {
@@ -344,7 +354,7 @@ namespace RealTree
     internal enum NodeTag
     {
         error, name, number, plus, minus, mul, div,
-        rem, negate, gt, gte, lt, lte, eq, neq, assign, IF, DO, abort, skip, SL, root, cond
+        rem, negate, gt, gte, lt, lte, eq, neq, assign, IF, DO, abort, skip, SL, root, cond, print
     }
 
     internal abstract class Node
@@ -814,6 +824,29 @@ namespace RealTree
             {
                 return String.Format("[Assign {0} {1}]", id.Unparse(), expr.Unparse());
             }
+        }
+    }
+
+    internal class PrintNode : Node
+    {
+        Leaf node;
+
+        internal PrintNode(Node n) : base(NodeTag.print) { this.node = n as Leaf; }
+
+        public override Node Eval(Parser p)
+        {
+            node.Eval(p);
+
+            Console.WriteLine(node.GetValue(p));
+
+            p.printArgs.Add(node.GetValue(p).ToString());
+
+            return this;
+        }
+
+        public override string Unparse()
+        {
+            return String.Format("[Print {0}]", node.Unparse());
         }
     }
 
