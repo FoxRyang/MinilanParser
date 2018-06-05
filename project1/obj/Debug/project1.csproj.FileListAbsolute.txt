@@ -10,3 +10,10 @@ C:\Users\Fox\Documents\MinilanParser\project1\obj\Debug\project1.pdb
 C:\Users\Fox\Documents\MinilanParser\project1\bin\Debug\project1.exe
 C:\Users\Fox\Documents\MinilanParser\project1\bin\Debug\project1.pdb
 C:\Users\Fox\Documents\MinilanParser\project1\obj\Debug\project1.csprojResolveAssemblyReference.cache
+C:\Users\fairy\Documents\MinilanParser\project1\bin\Debug\project1.exe.config
+C:\Users\fairy\Documents\MinilanParser\project1\bin\Debug\project1.exe
+C:\Users\fairy\Documents\MinilanParser\project1\bin\Debug\project1.pdb
+C:\Users\fairy\Documents\MinilanParser\project1\obj\Debug\project1.csprojAssemblyReference.cache
+C:\Users\fairy\Documents\MinilanParser\project1\obj\Debug\project1.csproj.CoreCompileInputs.cache
+C:\Users\fairy\Documents\MinilanParser\project1\obj\Debug\project1.exe
+C:\Users\fairy\Documents\MinilanParser\project1\obj\Debug\project1.pdb

@@ -59,15 +59,15 @@ DOSEQUENCE: DO END_DO	{ $$ = MakeAbort(); }
 SLSQs: 		SLSQ { $$ = $1; }
 			|SLSQ '|' SLSQs { $$ = MakeSLNode($1, $3);}
 ;
-SLSQ: 		GUARD ':''>' SENTENCES { $$ = MakeCondition($1, $2); }
+SLSQ: 		GUARD ':''>' SENTENCES { $$ = MakeCondition($1, $4); }
 ;
 
 GUARD:		EXPR '>' EXPR { $$ = MakeGaurd(NodeTag.gt ,$1, $3); }
-			| EXPR '>''=' EXPR { $$ = MakeGaurd(NodeTag.gte ,$1, $3); }
+			| EXPR '>''=' EXPR { $$ = MakeGaurd(NodeTag.gte ,$1, $4); }
 			| EXPR '<' EXPR { $$ = MakeGaurd(NodeTag.lt ,$1, $3); }
-			| EXPR '<''=' EXPR { $$ = MakeGaurd(NodeTag.lte ,$1, $3); }
-			| EXPR '=''=' EXPR { $$ = MakeGaurd(NodeTag.eq ,$1, $3); }
-			| EXPR '!''=' EXPR { $$ = MakeGaurd(NodeTag.neq ,$1, $3); }
+			| EXPR '<''=' EXPR { $$ = MakeGaurd(NodeTag.lte ,$1, $4); }
+			| EXPR '=''=' EXPR { $$ = MakeGaurd(NodeTag.eq ,$1, $4); }
+			| EXPR '!''=' EXPR { $$ = MakeGaurd(NodeTag.neq ,$1, $4); }
 ;
 
 %%
